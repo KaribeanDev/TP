@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entrée employé
+{% endblock %}
+
+{% block body %}
+
+	<div class="container mt-4">
+		<h1>
+			Mes entrées salariés</h1>
+		<div class="count">
+			<p>Vous avez actuellement {{ employes.getTotalItemCount }} salariés</p>
+				
+		</div>
+
+		<a href="{{ path ('app_employes')}}" class=" btn btn-primary">+ Nouveau salarié</a>
+
+		{# read and display just one flash message type #}
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-dismissible alert-success mt-4">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		<table class="table table-hover mt-4">
+			<thead>
+				<tr>
+					<th scope="col">Numéro</th>
+					<th scope="col">Prénom</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Téléphone</th>
+					<th scope="col">Email</th>
+					<th scope="col">Adresse</th>
+					<th scope="col">Poste</th>
+					<th scope="col">Salaire</th>
+					<th scope="col">Date de naissance</th>
+					<th scope="col">Edition</th>
+					<th scope="col">Suppression</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for employe in employes %}
+					<tr class="table-info">
+						<th scope="row">{{ employe.id }}</th>
+						<td>{{ employe.prenom}}</td>
+						<td>{{ employe.nom}}</td>
+						<td>{{ employe.telephone}}</td>
+						<td>{{ employe.email}}</td>
+						<td>{{ employe.adresse}}</td>
+						<td>{{ employe.poste}}</td>
+						<td>{{ employe.salaire}}</td>
+						<td>{{ employe.datedenaissance|date("d/m/Y")}}</td>
+						<td>
+							<a href="{{ path('app_edit', {id: employe.id}) }}" class="btn btn-info">Modifier</a>
+						</td>
+						<td>
+							<a href="{{path('app_delete', { id: employe.id }) }}" class="btn btn-danger">Supprimer</a>
+
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<div class="navigation d-flex justify-content-center mt-4">
+			{{ knp_pagination_render(employes) }}
+		</div>
+	</div>
+
+{% endblock %}

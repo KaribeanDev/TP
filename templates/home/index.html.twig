@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interface de Gestion
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<div class="jumbotron">
+			<h1 class="display-4">Bienvenue sur votre interface</h1>
+			<p class="lead">Cette interface de gestion du personnel a pour but de gérer les entrées et sorties de vos employés. Vous aurez la possibilité de mettre à jour vos informations salariés dans le cas de changement :</p>
+			<ul>
+				<li>
+					d'état civil</li>
+				<li>
+					d'adresse
+				</li>
+				<li>de poste (salaire inclus )</li>
+			</ul>
+			<hr class="my-4">
+			<p>Pour continuer cliquez sur :</p>
+			<p class="lead">
+				<a class="btn btn-info btn-lg" href="{{path('app_entree')}}" role="button">Suivant</a>
+			</p>
+		</div>
+
+	</div>
+
+{% endblock %}
